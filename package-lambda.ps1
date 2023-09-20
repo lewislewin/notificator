@@ -2,7 +2,7 @@
 # pip install -r requirements.txt
 
 # Step 3: Package for AWS Lambda
-
+Remove-Item -Path ".\function.zip"
 # Navigate to site-packages
 Write-Host "Navigating to site-packages..."
 cd .\venv\Lib\site-packages\
@@ -16,6 +16,6 @@ cd .\..\..\..\
 
 # Add lambda function code to ZIP
 Write-Host "Adding Lambda function code to ZIP..."
-Compress-Archive -Path lambda_function.py -Update -DestinationPath function.zip
+Compress-Archive -Path lambda_function.py, .\destinations\*, .\models\*, .\sources\* -Update -DestinationPath function.zip
 
 Write-Host "ZIP file for AWS Lambda has been created!"
