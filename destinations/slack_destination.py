@@ -1,4 +1,4 @@
-from abstract_destination import AbstractDestination
+from .abstract_destination import AbstractDestination
 
 class SlackDestination(AbstractDestination):
     def send_notification(self, request):

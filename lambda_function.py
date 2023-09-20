@@ -5,7 +5,7 @@ from sources.zendesk_source import ZendeskSource
 def lambda_handler(event, context):
     # Determine the source (Intercom, Zendesk, etc.)
     source_type = event['headers'].get('Source-Type')
-    if source_type == 'Zendesk':
+    if source_type == 'zendesk':
         source = ZendeskSource()
     else:
         return {
@@ -31,4 +31,28 @@ def lambda_handler(event, context):
     }
 
 if __name__ == '__main__':
-    print(lambda_handler(None, None))
+    # Sample event data mimicking the incoming webhook from Zendesk
+    event = {
+        'headers': {
+            'Host': 'd29d-82-163-154-201.ngrok.io',
+            'User-Agent': 'Zendesk Webhook',
+            'Content-Type': 'application/json; charset=utf-8',
+            'Source-Type': 'zendesk',
+            'X-Zendesk-Account-Id': '11178178',
+        },
+        'body': {
+            'ticket': {
+                'id': 35436,
+                'priority': 'high',
+                'status': 'open',
+                'subject': 'Help, my printer is on fire!',
+                'description': 'The fire is very colorful.',
+                'tags': ['enterprise', 'other_tag']
+            }
+        },
+        'httpMethod': 'POST'
+    }
+    
+    context = {}
+    
+    print(lambda_handler(event, context))

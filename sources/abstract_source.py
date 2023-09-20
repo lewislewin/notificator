@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class AbstractSource(ABC):
     @abstractmethod
-    def handle_webhook(self, request):
+    def process_data(self, request):
         pass
 
     @abstractmethod
