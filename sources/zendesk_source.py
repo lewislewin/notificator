@@ -7,9 +7,10 @@ class ZendeskSource(AbstractSource):
         return Notification(
             id = data['id'],
             source = 'Zendesk',
-            title = data['subject'],
+            title = data['title'],
             message = data['description'],
-            priority = data['priority']
+            priority = data['priority'],
+            organisation = data['organisation']
         )
 
     def verify_request(self, request):

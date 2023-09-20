@@ -39,15 +39,15 @@ if __name__ == '__main__':
             'Content-Type': 'application/json; charset=utf-8',
             'Source-Type': 'zendesk',
             'X-Zendesk-Account-Id': '11178178',
+            # ... other headers
         },
         'body': {
             'ticket': {
-                'id': 35436,
-                'priority': 'high',
-                'status': 'open',
-                'subject': 'Help, my printer is on fire!',
-                'description': 'The fire is very colorful.',
-                'tags': ['enterprise', 'other_tag']
+                'id': '12974',
+                'title': 'test',
+                'description': '----------------------------------------------\n\nLewis, 20 Sept 2023, 21:15\n\ntest\n\nThanks,\nLewis.',
+                'priority': '',
+                'organisation': 'Patchworks'
             }
         },
         'httpMethod': 'POST'

@@ -23,4 +23,8 @@ class SlackDestination(AbstractDestination):
         return True
     
     def format_message(self, notification: Notification) -> str:
-        return f'{notification.title}\n{notification.message}'
+        formatted_message = f'Alert <!here>: {notification.alert} \r\n'
+        formatted_message += f' <{notification.link}|{notification.id}> | {notification.title} - {notification.organisation}\r\n'
+
+        return formatted_message
+    
