@@ -4,6 +4,7 @@ from sources.zendesk_source import ZendeskSource
 
 def lambda_handler(event, context):
     # Determine the source (Intercom, Zendesk, etc.)
+
     source_type = event['headers'].get('Source-Type')
     if source_type == 'zendesk':
         source = ZendeskSource()
@@ -14,7 +15,7 @@ def lambda_handler(event, context):
         }
     
     # Process the data
-    processed_data = source.process_data(event['body'])
+    processed_data = source.process_data(json.loads(event['body']))
     
     # Define destinations
     destinations = [
