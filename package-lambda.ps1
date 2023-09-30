@@ -16,6 +16,6 @@ cd .\..\..\..\
 
 # Add lambda function code to ZIP
 Write-Host "Adding Lambda function code to ZIP..."
-Compress-Archive -Path lambda_function.py, .\destinations\*, .\models\*, .\sources\* -Update -DestinationPath function.zip
+Compress-Archive -Path lambda_function.py, .\destinations\, .\models\, .\sources\ -Update -DestinationPath function.zip
 
 Write-Host "ZIP file for AWS Lambda has been created!"
