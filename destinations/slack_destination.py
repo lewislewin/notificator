@@ -1,5 +1,5 @@
 from .abstract_destination import AbstractDestination
-from models.notification import Notification
+from models.notifications.ticket_notification import TicketNotification
 import os
 import requests
 
@@ -9,9 +9,9 @@ class SlackDestination(AbstractDestination):
         
         pass
 
-    def send_notification(self, notification: Notification):
+    def send_notification(self, ticket: TicketNotification):
         slack_url = os.environ.get('SLACK_URL')
-        slack_message = self.format_message(notification)
+        slack_message = ticket.formatMessageForSlack()
 
         response = requests.post(slack_url, json={'text': slack_message})
 
@@ -22,9 +22,4 @@ class SlackDestination(AbstractDestination):
         
         return True
     
-    def format_message(self, notification: Notification) -> str:
-        formatted_message = f'Alert <!here>: {notification.alert} \r\n'
-        formatted_message += f' <{notification.link}|{notification.id}> | {notification.title} - {notification.organisation}\r\n'
-
-        return formatted_message
     
